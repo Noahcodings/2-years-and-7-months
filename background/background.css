@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    top: -10%;
+    width: 30px;
+    height: 30px;
+    animation-name: floatDown;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    background: #ff1493;
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.heart::before {
+    width: 50%;
+    height: 80%;
+    top: 0;
+    left: 50%;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    width: 50%;
+    height: 80%;
+    top: 0;
+    left: 0;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.heart.xs { width: 15px; height: 15px; }
+.heart.sm { width: 20px; height: 20px; }
+.heart.md { width: 30px; height: 30px; }
+.heart.lg { width: 40px; height: 40px; }
+.heart.xl { width: 55px; height: 55px; }
+
+.heart.glow-soft::before,
+.heart.glow-soft::after {
+    box-shadow: 0 0 5px #ff1493, 0 0 10px #ff1493, 0 0 15px #ff1493, 0 0 20px #ff69b4;
+    opacity: 0.3;
+}
+
+.heart.glow-medium::before,
+.heart.glow-medium::after {
+    box-shadow: 0 0 8px #ff1493, 0 0 16px #ff1493, 0 0 24px #ff1493, 0 0 32px #ff69b4, 0 0 40px #ff69b4;
+    opacity: 0.5;
+}
+
+.heart.glow-strong::before,
+.heart.glow-strong::after {
+    box-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493, 0 0 40px #ff69b4, 0 0 50px #ff69b4, 0 0 60px #ff69b4;
+    opacity: 0.7;
+}
+
+.heart.glow-intense::before,
+.heart.glow-intense::after {
+    box-shadow: 0 0 15px #ff1493, 0 0 25px #ff1493, 0 0 35px #ff1493, 0 0 45px #ff69b4, 0 0 55px #ff69b4, 0 0 65px #ff69b4, 0 0 75px #ff69b4;
+    opacity: 0.9;
+}
+
+.heart.pink-hot::before,
+.heart.pink-hot::after { background: #ff1493; }
+.heart.pink-light::before,
+.heart.pink-light::after { background: #ff69b4; }
+.heart.pink-deep::before,
+.heart.pink-deep::after { background: #ff007f; }
+.heart.pink-rose::before,
+.heart.pink-rose::after { background: #ff69b4; }
+
+@keyframes floatDown {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: var(--max-opacity, 0.8); }
+    20% { transform: translateY(20vh) translateX(var(--sway-1, 20px)) rotate(15deg); opacity: var(--max-opacity, 0.8); }
+    40% { transform: translateY(40vh) translateX(var(--sway-2, -30px)) rotate(-10deg); opacity: var(--max-opacity, 0.7); }
+    60% { transform: translateY(60vh) translateX(var(--sway-3, 40px)) rotate(20deg); opacity: var(--max-opacity, 0.5); }
+    80% { transform: translateY(80vh) translateX(var(--sway-4, -25px)) rotate(-15deg); opacity: var(--max-opacity, 0.3); }
+    100% { transform: translateY(110vh) translateX(var(--sway-5, 15px)) rotate(360deg); opacity: 0; }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { filter: brightness(1) blur(0px); }
+    50% { filter: brightness(1.3) blur(0.5px); }
+}
